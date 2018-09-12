@@ -22,4 +22,50 @@ page-schedule {
      padding-left: 10px;
    }
   }
+  .wide-as-needed {
+    overflow: scroll;
+    white-space: nowrap;
+  }
+
+/*  .col-12 {
+    column-count: 2;
+    //grid-auto-columns: auto; 
+    column-gap: 20px;
+    
+  }
+*/
+  .card-title {
+    text-align: center;
+  }
+  
+/*  ion-scroll[scrollX] {
+    white-space: nowrap;
+    .scroll-item {
+    display: inline-block;
+    }
+  }
+*/
+/*  ion-card {
+    width: 500px !important;
+    display: inline-block;
+  }
+*/
+
+.scroll-zoom-wrapper {
+  white-space: nowrap;
+}
+
+ion-card {
+  width: 140px !important;
+  display: inline-block;
+}
+
+.addButton {
+  border: solid;
+  border-color: black;
+  border-width: 2px;
+  color: black;
+  font-size: 11px;
+}
+
 }

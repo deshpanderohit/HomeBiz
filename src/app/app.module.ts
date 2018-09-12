@@ -25,16 +25,23 @@ import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
+import { ProductPage } from '../pages/product/product';
+import { CategoryDetailsPage } from '../pages/category-details/category-details';
+import { ProductDetailsPage } from '../pages/product-details/product-details';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 
+//import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
     ConferenceApp,
     AboutPage,
     AccountPage,
+    CategoryDetailsPage,
+    ProductDetailsPage,
+    ProductPage,
     LoginPage,
     MapPage,
     PopoverPage,
@@ -51,6 +58,7 @@ import { UserData } from '../providers/user-data';
   imports: [
     BrowserModule,
     HttpModule,
+    //RecaptchaModule.forRoot(),
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -74,6 +82,9 @@ import { UserData } from '../providers/user-data';
   entryComponents: [
     ConferenceApp,
     AboutPage,
+    ProductPage,
+    CategoryDetailsPage,
+    ProductDetailsPage,
     AccountPage,
     LoginPage,
     MapPage,

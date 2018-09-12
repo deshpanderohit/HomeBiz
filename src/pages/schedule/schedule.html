@@ -4,14 +4,10 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
-      <ion-segment-button value="all">
-        All
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        Favorites
-      </ion-segment-button>
-    </ion-segment>
+    <ion-title style="text-align: center; padding-right: 10px;">
+      <img alt="logo" height="50" width="150" src="assets/img/logo.png" >
+    </ion-title>
+
 
     <ion-buttons end>
       <button ion-button icon-only (click)="presentFilter()">
@@ -27,62 +23,80 @@
                    placeholder="Search">
     </ion-searchbar>
   </ion-toolbar>
-</ion-header>
+
+  </ion-header>
+
 
 <ion-content>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+<!--
+    <ion-scroll scrollX="true" class="wide-as-needed">
+        <img src="../../assets/img/banner/bakery.jpg">
+    </ion-scroll>
+-->
 
-  <ion-list #scheduleList [hidden]="shownSessions === 0">
+<div>
+  <ion-slides autoplay="2000" loop="true" speed="1500" class="slides" pager="true">
+    <ion-slide>
+      <img src="../../assets/img/banner/bakery.jpg">
+    </ion-slide>
+    <ion-slide>
+      <img src="../../assets/img/banner/beauty.jpg">
+    </ion-slide>
+    <ion-slide>
+      <img src="../../assets/img/banner/food items.jpg">
+    </ion-slide>
+    <ion-slide>
+      <img src="../../assets/img/banner/gift.jpg">
+    </ion-slide>
+    <ion-slide>
+      <img src="../../assets/img/banner/jewellery.jpg">
+    </ion-slide>
+  </ion-slides>
+</div>
 
-    <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
+<div>
+  <ion-grid>
+    <ion-row>
 
-      <ion-item-divider sticky>
-        <ion-label>
-          {{group.time}}
-        </ion-label>
-      </ion-item-divider>
+      <ion-card-header style="font-size: 18px; padding-left: 15px;">
+        New Arrivals
+      </ion-card-header>
+    
+      <div style="padding-left: 130px; padding-top: 9px;">
+        <button class="addButton" ion-button clear  (click)="viewAllNewArrivals($event)">View All</button>
+      </div>
 
-      <ion-item-sliding *ngFor="let session of group.sessions" #slidingItem [attr.track]="session.tracks[0] | lowercase" [hidden]="session.hide">
+      <div style="padding-left: 17px;">
+        <ion-list>
 
-        <button ion-item (click)="goToSessionDetail(session)">
-          <h3>{{session.name}}</h3>
-          <p>
-            {{session.timeStart}} &mdash;
-            {{session.timeEnd}}:
-            {{session.location}}
-          </p>
-        </button>
+          <ion-card *ngFor="let product of products" (click)="view(product)">
+            <img class="full-image" src="assets/img/products/{{product.prod_img}}"/>
+            <div class="card-title" style="font-size: 15px">{{ product?.prod_name }}</div>
+          </ion-card>
 
-        <ion-item-options>
-          <button ion-button color="favorite" (click)="addFavorite(slidingItem, session)" *ngIf="segment === 'all'">
-            Favorite
-          </button>
-          <button ion-button color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')" *ngIf="segment === 'favorites'">
-            Remove
-          </button>
-        </ion-item-options>
+        </ion-list>
+      </div>
+    </ion-row>
+  </ion-grid>
+</div>
 
-      </ion-item-sliding>
+<div>
+      <ion-card-header style="font-size: 18px; padding-left: 15px;">
+        Top Trending
+      </ion-card-header>
+    
+      <div style="padding-left: 17px;">
+        <ion-list>
 
-    </ion-item-group>
+          <ion-card *ngFor="let product of data" (click)="view(product)">
+            <img class="full-image" src="assets/img/products/{{product.prod_img}}"/>
+            <div class="card-title" style="font-size: 15px">{{ product?.prod_name }}</div>
+          </ion-card>
 
-  </ion-list>
-
-  <ion-list-header [hidden]="shownSessions > 0">
-      No Sessions Found
-  </ion-list-header>
-
-  <ion-fab bottom right #fab>
-    <button ion-fab><ion-icon name="share"></ion-icon></button>
-    <ion-fab-list side="top">
-      <button ion-fab color="vimeo" (click)="openSocial('Vimeo', fab)"><ion-icon name="logo-vimeo"></ion-icon></button>
-      <button ion-fab color="google" (click)="openSocial('Google+', fab)"><ion-icon name="logo-googleplus"></ion-icon></button>
-      <button ion-fab color="twitter" (click)="openSocial('Twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
-      <button ion-fab color="facebook" (click)="openSocial('Facebook', fab)"><ion-icon name="logo-facebook"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
+        </ion-list>
+      </div>
+  
+</div>
 
 
 </ion-content>
