@@ -17,8 +17,11 @@ export class ProductDetailsPage {
 
   today = new Date();
   products: any = [];
+  pname: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.products = this.navParams.get("product");
+    this.pname = this.navParams.get("pname");
+    //this.pname = this.products.prod_name;
 
     this.products = this.products.map(function(e) {
       var o = Object.assign({},e);

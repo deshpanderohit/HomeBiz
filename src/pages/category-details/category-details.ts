@@ -43,7 +43,7 @@ export class CategoryDetailsPage {
       if(data) {
         this.product = data;
         console.log("Product: "+JSON.stringify(this.product));
-        this.navCtrl.push(ProductDetailsPage,{product: this.product});
+        this.navCtrl.push(ProductDetailsPage,{product: this.product,pname: category});
       }
       else {
         const toast = this.toastCtrl.create({
