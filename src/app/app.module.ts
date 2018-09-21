@@ -6,6 +6,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { DocumentViewer } from '@ionic-native/document-viewer';
+import { RecaptchaModule } from 'ng-recaptcha';
+
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -28,6 +31,12 @@ import { SupportPage } from '../pages/support/support';
 import { ProductPage } from '../pages/product/product';
 import { CategoryDetailsPage } from '../pages/category-details/category-details';
 import { ProductDetailsPage } from '../pages/product-details/product-details';
+import { AboutModalPage } from '../pages/about-modal/about-modal';
+import { FaqPage } from '../pages/faq/faq';
+import { PoliciesPage } from '../pages/policies/policies';
+import { TermsPage } from '../pages/terms/terms';
+import { ProfilePage } from '../pages/profile/profile';
+import { ChangePasswordPage } from '../pages/change-password/change-password';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
@@ -41,6 +50,12 @@ import { UserData } from '../providers/user-data';
     AccountPage,
     CategoryDetailsPage,
     ProductDetailsPage,
+    ChangePasswordPage,
+    PoliciesPage,
+    ProfilePage,
+    TermsPage,
+    FaqPage,
+    AboutModalPage,
     ProductPage,
     LoginPage,
     MapPage,
@@ -54,11 +69,12 @@ import { UserData } from '../providers/user-data';
     TabsPage,
     TutorialPage,
     SupportPage
+
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    //RecaptchaModule.forRoot(),
+    RecaptchaModule.forRoot(),
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -85,7 +101,13 @@ import { UserData } from '../providers/user-data';
     ProductPage,
     CategoryDetailsPage,
     ProductDetailsPage,
+    ChangePasswordPage,
+    PoliciesPage,
+    ProfilePage,
+    TermsPage,
+    FaqPage,
     AccountPage,
+    AboutModalPage,
     LoginPage,
     MapPage,
     PopoverPage,
@@ -103,8 +125,12 @@ import { UserData } from '../providers/user-data';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConferenceData,
     UserData,
+    DocumentViewer,
     InAppBrowser,
-    SplashScreen
-  ]
+    SplashScreen,  
+  ],
+  exports: [
+    RecaptchaModule
+ ]
 })
 export class AppModule { }

@@ -8,4 +8,23 @@
 </ion-header>
 
 <ion-content>
+  <div style="align-items: center;">
+      <img alt="logo" height="60" width="200" src="assets/img/logo.png" >
+  </div>
+<br>
+<div padding>
+  <span style="font-size: 16px;">
+    HomeBiz365 is an online business platform provided by <a href="www.clairvoyantbizinfo.com"> Clairvoyant BizInfo Pvt. Ltd </a> for home-based entrepreneurs to connect directly to the customers who love buying home made quality products.
+  </span>
+</div>
+
+  <br><br>
+  <ion-list>
+    <ion-list-header style="font-size: 18px; font-weight: bold; text-align: center;">
+      Easy Links
+    </ion-list-header>
+    <button ion-item *ngFor="let category of categories" (click)="open(category)">
+      {{ category.cat_name }}
+    </button>
+  </ion-list>
 </ion-content>

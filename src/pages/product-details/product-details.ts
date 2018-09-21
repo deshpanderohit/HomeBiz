@@ -15,10 +15,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProductDetailsPage {
 
+  timeslots: any;
+  time: any;
   today = new Date();
   products: any = [];
   pname: any;
+
+
+  initialize() {
+
+    this.timeslots = [
+      { "st": "9 AM", "et": "12 PM" },
+      { "st": "12 PM", "et": "3 PM" },
+      { "st": "3 PM", "et": "6 PM" },
+      { "st": "6 AM", "et": "9 PM" },
+    ];
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.initialize();
     this.products = this.navParams.get("product");
     this.pname = this.navParams.get("pname");
     //this.pname = this.products.prod_name;
@@ -49,5 +64,10 @@ export class ProductDetailsPage {
       product.quantity--;
   }
 
+  addToCart(product: any, today: Date,time: any) {
+    console.log("Product: "+JSON.stringify(product));
+    console.log("Date: "+JSON.stringify(today));
+    console.log("Time: "+time);
+  }
 
 }

@@ -93,11 +93,7 @@
       <ion-item>
         <ion-label>Delivery Time : </ion-label>
         <ion-select [(ngModel)]="time">
-          <ion-option [value]="9">9 AM - 12 PM</ion-option>
-          <ion-option [value]="12">12 PM - 3 PM</ion-option>
-          <ion-option [value]="3">3 PM - 6 PM</ion-option>
-          <ion-option [value]="6">6 PM - 9 PM</ion-option>
-        </ion-select>
+          <ion-option *ngFor="let timeslot of timeslots" [value]="timeslot">{{ timeslot.st }} - {{ timeslot.et }}</ion-option>        </ion-select>
       </ion-item>
 
       <div padding>

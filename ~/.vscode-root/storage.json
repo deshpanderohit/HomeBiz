@@ -21,6 +21,11 @@
             "label": "Ctrl+Shift+T",
             "isNative": true
         },
+        "workbench.action.openRecent": {
+            "id": "workbench.action.openRecent",
+            "label": "Ctrl+R",
+            "isNative": true
+        },
         "workbench.action.files.save": {
             "id": "workbench.action.files.save",
             "label": "Ctrl+S",
@@ -34,6 +39,11 @@
         "workbench.action.openSettings": {
             "id": "workbench.action.openSettings",
             "label": "Ctrl+,",
+            "isNative": true
+        },
+        "workbench.view.extensions": {
+            "id": "workbench.view.extensions",
+            "label": "Ctrl+Shift+X",
             "isNative": true
         },
         "workbench.action.openGlobalKeybindings": {
@@ -219,11 +229,6 @@
         "workbench.view.debug": {
             "id": "workbench.view.debug",
             "label": "Ctrl+Shift+D",
-            "isNative": true
-        },
-        "workbench.view.extensions": {
-            "id": "workbench.view.extensions",
-            "label": "Ctrl+Shift+X",
             "isNative": true
         },
         "workbench.action.output.toggleOutput": {
@@ -446,19 +451,30 @@
             "label": "Shift+F9",
             "isNative": true
         },
+        "workbench.action.terminal.new": {
+            "id": "workbench.action.terminal.new",
+            "label": "Ctrl+Shift+`",
+            "isNative": true
+        },
+        "workbench.action.terminal.split": {
+            "id": "workbench.action.terminal.split",
+            "label": "Ctrl+\\",
+            "isNative": true
+        },
         "workbench.action.tasks.build": {
             "id": "workbench.action.tasks.build",
             "label": "Ctrl+Shift+B",
             "isNative": true
         }
     },
-    "theme": "vs-dark vscode-theme-defaults-themes-dark_plus-json",
+    "theme": "vs-dark",
     "themeBackground": "#1e1e1e",
-    "pickerWorkingDir": "/media/root/New Volume1/project",
+    "pickerWorkingDir": "/root",
     "openedPathsList": {
         "workspaces2": [
+            "file:///root/HomeBiz365",
             "file:///media/root/New%20Volume1/project/HomeBiz365"
         ],
-        "files": []
+        "files2": []
     }
 }

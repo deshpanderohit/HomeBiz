@@ -40,4 +40,20 @@ export class ConferenceData {
     let data = JSON.stringify({prod_name: prod_name});
     return this.http.post('http://localhost/hb/product/productInfo.php',data).map(result => result.json());
   }
+
+  validateLogin(username: any, password: any) {
+    let data = JSON.stringify({ username: username, password: password });
+    return this.http.post('http://localhost/hb/login/validateLogin.php',data).map(result => result.json());
+  }
+
+  custInfo(id: any) {
+    //console.log("Id is: "+id);
+    let data = JSON.stringify({ cust_id: id });
+    return this.http.post('http://localhost/hb/customer/custInfo.php',data).map(result => result.json());
+  }
+
+  custSignup(data: any) {
+    return this.http.post('http://localhost/hb/customer/custSignup.php',data).map(result => result.json());
+  }
+
 }

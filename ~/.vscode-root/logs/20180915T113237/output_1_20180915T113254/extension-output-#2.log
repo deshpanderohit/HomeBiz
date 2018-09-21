@@ -1,0 +1,4 @@
+[Info  - 11:33:18 AM] Using tsserver from: /snap/vscode/53/usr/share/code/resources/app/extensions/node_modules/typescript/lib
+[Info  - 11:33:18 AM] Forking TSServer
+PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin 
+[Info  - 11:33:18 AM] Started TSServer

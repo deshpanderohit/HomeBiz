@@ -1,0 +1,117 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Update Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list *ngFor="let customer of custInfo">
+	<form novalidate>
+
+		<ion-item>      
+			<ion-label fixed style="color: black;">Full Name</ion-label>
+			<ion-input type="text" value="" placeholder="{{ customer?.cust_fname }}"></ion-input>
+		</ion-item>
+<!--
+	formControlName="name"
+	[formGroup]="member"
+		<ion-item no-lines *ngIf="( member.get('name').hasError('minlength') || member.get('name').hasError('required') ) && member.get('name').touched">
+			<div class="error" *ngIf="member.get('name').hasError('required') && member.get('name').touched">
+			Please enter your full name
+			</div>
+		</ion-item>
+-->
+
+		<ion-item>
+		<ion-label fixed style="color: black;">Email</ion-label>
+		<ion-input type="text" value="" placeholder="{{ customer?.cust_email }}"></ion-input>
+		</ion-item>
+<!--
+	formControlName="email"
+		<ion-item no-lines *ngIf="( member.get('email').hasError('required') || member.get('email').hasError('email') ) && member.get('email').touched">
+			<div class="error" *ngIf="member.get('email').hasError('required') && member.get('email').touched">
+				Please enter your email
+			</div>
+    </ion-item>
+    
+-->
+    <ion-item>
+        <ion-label fixed style="color: black;">Date Of Birth : </ion-label>
+        <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="today" name="dob" placeholder="{{ customer?.cust_dob }}"></ion-datetime>
+        <ion-icon name="calendar" item-right></ion-icon>
+    </ion-item>
+<!--  
+	formControlName="dob"
+    <ion-item no-lines *ngIf="( member.get('dob').hasError('minlength') || member.get('dob').hasError('required') ) && member.get('dob').touched">
+        <div class="error" *ngIf="member.get('dob').hasError('required') && member.get('dob').touched">
+        Please enter your date of birth
+        </div>
+		</ion-item>
+		
+		formControlName="address"
+		formControlName="mob"
+	-->
+	
+		<ion-item>
+			<ion-label fixed style="color: black;">Address</ion-label>
+			<ion-textarea name="address" rows="3" placeholder="{{ customer?.cust_addr }}" required></ion-textarea>
+		</ion-item>
+
+
+		<ion-item>
+			<ion-label fixed style="color: black;">Gender</ion-label>
+			<ion-select [(ngModel)]="gender" name="gen" placeholder="{{ customer?.cust_gen }}">
+				<ion-option value="Male">Male</ion-option>
+				<ion-option value="Female">Female</ion-option>
+			</ion-select>
+		</ion-item>
+
+
+		<ion-item>
+			<ion-label fixed style="color: black;">Mob</ion-label>
+			<ion-input type="text" placeholder="{{ customer?.cust_cntc }}" value="" ></ion-input>
+		</ion-item>
+<!--
+		<ion-item no-lines *ngIf="( member.get('mob').hasError('required') || member.get('mob').hasError('minlength') || member.get('mob').hasError('maxlength'))&& member.get('mob').touched">
+			<div class="error" *ngIf="member.get('mob').hasError('required') && member.get('mob').touched">
+				Please enter your mobile number
+			</div>
+			<div class="error" *ngIf="member.get('mob').hasError('minlength') && member.get('mob').touched">
+				Please enter valid mobile number
+			</div>
+
+			<div class="error" *ngIf="member.get('mob').hasError('maxlength') && member.get('mob').touched">
+				Please enter valid mobile number
+			</div>
+		</ion-item>
+-->
+		<ion-item>
+			<ion-label fixed style="color: black;">Pincode</ion-label>
+			<ion-input type="text" name="pincode" placeholder="{{ customer?.loc_zip }}" required ></ion-input>
+		</ion-item>
+<!--
+	formControlName="address"
+    <ion-item no-lines *ngIf="( member.get('address').hasError('minlength') || member.get('address').hasError('required') ) && member.get('address').touched">
+        <div class="error" *ngIf="member.get('address').hasError('required') && member.get('address').touched">
+        Please enter your address
+        </div>
+    </ion-item>
+-->
+
+<div padding>
+	<button ion-button color="facebook" full (click)="updateProfile()">Update</button>
+</div>
+
+	</form>
+</ion-list>
+</ion-content>
+<!-- [disabled]="member.invalid" -->

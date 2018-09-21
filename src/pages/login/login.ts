@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 
 import { SignupPage } from '../signup/signup';
 import { TabsPage } from '../tabs-page/tabs-page';
+import { ConferenceData } from '../../providers/conference-data';
 
 @Component({
   selector: 'page-user',
@@ -27,9 +28,9 @@ export class LoginPage implements OnInit {
 	username:'';
 	password:'';
 	public form: NgForm;
+	result: any;
 
-
-  constructor(public navCtrl: NavController, public http: Http, public toastCtrl: ToastController, public userData: UserData, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public http: Http, public toastCtrl: ToastController, public userData: UserData, public loadingCtrl: LoadingController, public confData: ConferenceData) {
 
 		
    }
@@ -47,15 +48,15 @@ export class LoginPage implements OnInit {
 		this.navCtrl.push(SignupPage);
 	}
 
-
+/*
 	validateLogin() {
 		let data=JSON.stringify({username: this.username, password:this.password});
 
 		console.log("Data: "+data);
 
 		this.http.post('http://localhost/hb/login/validateLogin.php',data).subscribe(res => {
-
-
+*/
+		
 /*		let loader = this.loadingCtrl.create({
 			content: "Authenticating...",
 			duration: 300
@@ -69,7 +70,8 @@ export class LoginPage implements OnInit {
 	    });
 	    toast.present();
 */
-		console.log(res);
+/*
+		console.log(JSON.stringify(res));
 		this.userData.login(this.username);
 		this.navCtrl.setRoot(TabsPage);
 
@@ -85,8 +87,29 @@ export class LoginPage implements OnInit {
 		
 
 	}
+*/
 
+	validateLogin() {
+		//let data=JSON.stringify({username: this.username, password:this.password});
+		this.confData.validateLogin(this.username,this.password).subscribe(data => {
+			//console.log(JSON.stringify(data));
+			if(data) {
+				this.result = data;
+				this.result.forEach(value => {
+					this.userData.login(value.uname);
+					this.userData.setId(value.cid);	
+				})
+				this.navCtrl.setRoot(TabsPage);	
+			}
+			else {	
+				let toast = this.toastCtrl.create({
+				message: 'Incorrect Username or Password',
+				duration: 4000
+				});
+				toast.present();
+			}
+		});		
+	}
 
- 
 }
 //Validators.pattern(this.passwordRegex)

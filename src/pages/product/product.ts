@@ -19,11 +19,23 @@ import { ConferenceData } from '../../providers/conference-data';
 export class ProductPage {
 
   today = new Date();
-  
+  timeslots: any;
+  time: any;
   data: any = [];
   products: any = [];
 
+  initialize() {
+
+    this.timeslots = [
+      { "st": "9 AM", "et": "12 PM" },
+      { "st": "12 PM", "et": "3 PM" },
+      { "st": "3 PM", "et": "6 PM" },
+      { "st": "6 AM", "et": "9 PM" },
+    ];
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public confData: ConferenceData) {
+      this.initialize();
       this.data = this.navParams.get('product');
       this.confData.getProductDetails(this.data.prod_id).subscribe(data => {
         this.products = data;
@@ -61,5 +73,11 @@ export class ProductPage {
     if(product.quantity>1)
       product.quantity--;
   }
+
+ // addToCart(product: any, today: Date,time: any) {
+    //console.log("Product: "+JSON.stringify(product));
+    //console.log("Date: "+JSON.stringify(today));
+    //console.log("Time: "+JSON.stringify(time));
+  //}
 
 }

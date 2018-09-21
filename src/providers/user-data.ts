@@ -45,6 +45,7 @@ export class UserData {
   logout(): void {
     this.storage.remove(this.HAS_LOGGED_IN);
     this.storage.remove('username');
+    this.storage.remove('cid');
     this.events.publish('user:logout');
   };
 
@@ -52,11 +53,23 @@ export class UserData {
     this.storage.set('username', username);
   };
 
+  setId(id: number): void {
+    this.storage.set('cid',id);
+  };
+
+  getCustId(): Promise<string> {
+    return this.storage.get('cid').then((value) => {
+      return JSON.parse(value);
+    });
+  };
+
+
   getUsername(): Promise<string> {
     return this.storage.get('username').then((value) => {
       return value;
     });
   };
+
 
   hasLoggedIn(): Promise<boolean> {
     return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
