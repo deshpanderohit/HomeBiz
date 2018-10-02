@@ -19,7 +19,7 @@
 
 		<ion-item>      
 			<ion-label fixed style="color: black;">Full Name</ion-label>
-			<ion-input type="text" value="" placeholder="{{ customer?.cust_fname }}"></ion-input>
+			<ion-input type="text" value="" name="name" placeholder="{{ customer?.cust_fname }}"></ion-input>
 		</ion-item>
 <!--
 	formControlName="name"
@@ -33,7 +33,7 @@
 
 		<ion-item>
 		<ion-label fixed style="color: black;">Email</ion-label>
-		<ion-input type="text" value="" placeholder="{{ customer?.cust_email }}"></ion-input>
+		<ion-input type="text" value="" name="email" placeholder="{{ customer?.cust_email }}"></ion-input>
 		</ion-item>
 <!--
 	formControlName="email"
@@ -78,7 +78,7 @@
 
 		<ion-item>
 			<ion-label fixed style="color: black;">Mob</ion-label>
-			<ion-input type="text" placeholder="{{ customer?.cust_cntc }}" value="" ></ion-input>
+			<ion-input type="text" name="mob" placeholder="{{ customer?.cust_cntc }}" value="" ></ion-input>
 		</ion-item>
 <!--
 		<ion-item no-lines *ngIf="( member.get('mob').hasError('required') || member.get('mob').hasError('minlength') || member.get('mob').hasError('maxlength'))&& member.get('mob').touched">

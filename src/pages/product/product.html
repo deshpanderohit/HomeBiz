@@ -81,8 +81,6 @@
         
       </span>
 
-
-
     <div>
       <ion-item>
         <ion-label>Required On : </ion-label>
@@ -93,7 +91,7 @@
       <ion-item>
         <ion-label>Delivery Time : </ion-label>
         <ion-select [(ngModel)]="time">
-          <ion-option *ngFor="let timeslot of timeslots" [value]="timeslot">{{ timeslot.st }} - {{ timeslot.et }}</ion-option>        </ion-select>
+          <ion-option *ngFor="let timeslot of timeslots" [value]="timeslot">{{ timeslot.bs_from }} - {{ timeslot.bs_to }}</ion-option></ion-select>
       </ion-item>
 
       <div padding>

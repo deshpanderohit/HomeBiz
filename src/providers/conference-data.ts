@@ -52,8 +52,30 @@ export class ConferenceData {
     return this.http.post('http://localhost/hb/customer/custInfo.php',data).map(result => result.json());
   }
 
-  custSignup(data: any) {
+  custSignup(name: any,address: any,pincode: any,mob: any,email: any,dob: any,gender: any,username: any,password: any,cpassword: any) {
+    let data = JSON.stringify({ name: name, address: address, pincode: pincode,mob: mob, email: email, dob: dob, gender: gender, username: username, password: password, cpassword: cpassword });
+    console.log("Signup Data: "+data);
     return this.http.post('http://localhost/hb/customer/custSignup.php',data).map(result => result.json());
   }
 
+  bookingSlots() {
+    return this.http.get('http://localhost/hb/category/booking_slots.php').map(result => result.json());
+  }
+
+  addToCart(cid: any, prod_id: any, qty: any,req_dt: any,bs_id:any, int_usr:any) {
+    let data = JSON.stringify({ cid: cid, prod_id: prod_id, qty: qty, req_dt: req_dt, bs_id: bs_id, int_usr: int_usr })
+    console.log("Data: "+data);
+    return this.http.post('http://localhost/hb/product/addToCart.php',data).map(result => result.json());
+  }
+
+  updateProfile(type: any,data: any,cid: any) {
+    let json_data = JSON.stringify({ type: type, data: data, cid: cid });
+    console.log("JSON Data: "+json_data);
+    return this.http.post('http://localhost/hb/customer/updateProfile.php',json_data).map(result => result.json());
+  }
+
+  getCartItems(cid: any) {
+    let data = JSON.stringify({ cid: cid });
+    return this.http.post('http://localhost/hb/cart/cartItems.php',data).map(result => result.json());
+  }
 }

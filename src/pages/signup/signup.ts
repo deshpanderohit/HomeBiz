@@ -81,9 +81,9 @@ export class SignupPage implements OnInit {
 	}
 
 	newCustRegister() {
-		let data=JSON.stringify({name: this.name, address: this.address, pincode: this.pincode, email: this.email, dob: this.dob, gender: this.gender,username: this.username, password:this.password, cpassword:this.cpassword});
+		//let data=JSON.stringify({name: this.name, address: this.address, pincode: this.pincode, email: this.email,mob: this.mob, dob: this.dob, gender: this.gender,username: this.username, password:this.password, cpassword:this.cpassword});
 
-		this.confData.custSignup(data).subscribe(data => {
+		this.confData.custSignup(this.name,this.address,this.pincode,this.email,this.dob,this.mob,this.gender,this.username,this.password,this.cpassword).subscribe(data => {
 			console.log(data);
 		})
 		//this.http.post('http://localhost/api/product/gym_signup.php',data).map(res => res.json()).subscribe(res => {alert("success: Userid "+res.userid+" Access Token "+res.token);}, () => {alert("failed");});		

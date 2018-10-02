@@ -37,6 +37,7 @@ import { PoliciesPage } from '../pages/policies/policies';
 import { TermsPage } from '../pages/terms/terms';
 import { ProfilePage } from '../pages/profile/profile';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
+import { TimePage } from '../pages/time/time';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
@@ -52,6 +53,7 @@ import { UserData } from '../providers/user-data';
     ProductDetailsPage,
     ChangePasswordPage,
     PoliciesPage,
+    TimePage,
     ProfilePage,
     TermsPage,
     FaqPage,
@@ -104,6 +106,7 @@ import { UserData } from '../providers/user-data';
     ChangePasswordPage,
     PoliciesPage,
     ProfilePage,
+    TimePage,
     TermsPage,
     FaqPage,
     AccountPage,

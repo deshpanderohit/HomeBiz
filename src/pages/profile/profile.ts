@@ -28,6 +28,7 @@ export class ProfilePage implements OnInit {
   name: any;
   dob: any;
   today = new Date();
+  address: any;
   gender: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public confData: ConferenceData, public storage: Storage, public userData: UserData) {
@@ -66,7 +67,56 @@ export class ProfilePage implements OnInit {
 
   updateProfile() {
     //let data = JSON.stringify({ name: this.name, email: this.email,dob: this.dob, mob: this.mob, })
+    this.storage.get('cid').then(data => {
+      //console.log("Data: "+data);
+      this.cid = data;
+      console.log("Cid is: "+this.cid);
+      let type: any;
+      
+      if(this.name != "") {
+        type = "cust_fname";
+        this.confData.updateProfile(type,this.name,this.cid).subscribe(data => {
+          console.log(data.message);
+        });
+      }
+      else if(this.email != "") {
+        type = "cust_email";
+        this.confData.updateProfile(type,this.email,this.cid).subscribe(data => {
+          console.log(data.message);
+        });
+      }
+      else if(this.dob != "") {
+        type = "cust_dob";
+        this.confData.updateProfile(type,this.dob,this.cid).subscribe(data => {
+          console.log(data.message);
+        });
+      }
+      else if(this.address != "") {
+        type = "cust_addr";
+        this.confData.updateProfile(type,this.address,this.cid).subscribe(data => {
+          console.log(data.message);
+        });
+      }
+      else if(this.gender != "") {
+        type = "cust_gen";
+        this.confData.updateProfile(type,this.gender,this.cid).subscribe(data => {
+          console.log(data.message);
+        });
+      }
+      else if(this.mob != "") {
+        type = "cust_cntc";
+        this.confData.updateProfile(type,this.mob,this.cid).subscribe(data => {
+          console.log(data.message);
+        });
+      }
+      else if(this.pincode != "") {
+        type = "loc_zip";
+        this.confData.updateProfile(type,this.pincode,this.cid).subscribe(data => {
+          console.log(data.message);
+        });
+      }
 
+    })      
   }
 
 }

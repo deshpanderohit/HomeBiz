@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 import { ConferenceData } from '../../providers/conference-data';
-
-import { Platform } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { Platform, ModalController, ModalOptions } from 'ionic-angular';
+import { TimePage } from '../time/time';
 
 
 @Component({
@@ -11,11 +12,49 @@ import { Platform } from 'ionic-angular';
 })
 export class MapPage {
 
+  cid: any;
+  cartItems: any = [];
+
+  myModalOptions: ModalOptions = {
+    enableBackdropDismiss: false,
+    cssClass : 'pricebreakup'
+  };
+
+
   //@ViewChild('mapCanvas') mapElement: ElementRef;
-  constructor(public confData: ConferenceData, public platform: Platform) {
+  constructor(public confData: ConferenceData, public platform: Platform, public storage: Storage, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
+    this.storage.get('cid').then(data => {
+      console.log("Data: "+data);
+      this.cid = data;
+      console.log("Cid is: "+this.cid);
 
+      this.confData.getCartItems(this.cid).subscribe(data => {
+        this.cartItems = data;
+        console.log("Cart Items: "+JSON.stringify(this.cartItems));
+      })
+    })
+  }
+
+  increment(event: any, item: any) {
+    event.stopPropagation();
+    item.qty++;
+  }
+
+  decrement(event: any, item: any) {
+    event.stopPropagation();
+    item.qty--;
+  }
+
+  viewItem(data: any) {
+    //console.log("Item Clicked: "+JSON.stringify(item));
+    let modal = this.modalCtrl.create(TimePage,{ data: data },this.myModalOptions);
+    modal.present();
+  }
+
+  order(data: any) {
+    console.log("Order Details: "+JSON.stringify(data));
   }
 }

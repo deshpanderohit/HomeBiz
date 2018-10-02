@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { Storage } from '@ionic/storage';
 
 import { ConferenceData } from '../../providers/conference-data';
 
@@ -23,19 +23,9 @@ export class ProductPage {
   time: any;
   data: any = [];
   products: any = [];
+  prodCart: Array<{ cid: string, prod_id: string, qty: string, req_dt: string, bs_id: string, ins_usr: string  }> = [];
 
-  initialize() {
-
-    this.timeslots = [
-      { "st": "9 AM", "et": "12 PM" },
-      { "st": "12 PM", "et": "3 PM" },
-      { "st": "3 PM", "et": "6 PM" },
-      { "st": "6 AM", "et": "9 PM" },
-    ];
-  }
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public confData: ConferenceData) {
-      this.initialize();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public confData: ConferenceData, public storage: Storage) {
       this.data = this.navParams.get('product');
       this.confData.getProductDetails(this.data.prod_id).subscribe(data => {
         this.products = data;
@@ -49,7 +39,11 @@ export class ProductPage {
 
         console.log("Product Details: "+JSON.stringify(this.products));
         this.today.setDate(this.products.lead_time_display);
-  
+        
+        this.confData.bookingSlots().subscribe(data => {
+          this.timeslots = data;
+          console.log("Timeslots: "+JSON.stringify(this.timeslots));
+        })
       })
 
       
@@ -74,10 +68,47 @@ export class ProductPage {
       product.quantity--;
   }
 
- // addToCart(product: any, today: Date,time: any) {
-    //console.log("Product: "+JSON.stringify(product));
-    //console.log("Date: "+JSON.stringify(today));
-    //console.log("Time: "+JSON.stringify(time));
-  //}
+  addToCart(product: any, today: Date,time: any) {
+    console.log("Product: "+JSON.stringify(product));
+    console.log("Date: "+JSON.stringify(today));
+    console.log("Time: "+JSON.stringify(time));
+    //cust_id,prod_id,qty,req_dt,bs_id,ins_dt,ins_usr
+
+    this.storage.get('cid').then(result => {
+//      console.log("Data: "+data);
+      if(result) {
+        this.storage.get('username').then( data => {
+          if(data) {
+            let cid = result;
+            let name = data;
+
+            this.confData.addToCart(cid,product.prod_id,product.quantity.toString(),today.toString(),time.bs_id,name).subscribe(data => {
+              console.log("Data Received: "+data.message);
+            })
+/*            this.prodCart.push({
+              'cid': cid,
+              'prod_id': product.prod_id,
+              'qty': product.quantity.toString(),
+              'req_dt': today.toString(),
+              'bs_id': time.bs_id,
+              'ins_usr': name
+            })
+            //console.log("Prod Cart: "+JSON.stringify(this.prodCart));
+            this.confData.addToCart(this.prodCart).subscribe(data => {
+  
+              console.log("Data Received: "+data.message);
+              if(data.message == "Added to Cart") {
+                console.log("Product Added");
+              }
+              else
+                console.log("Product Not Added");
+                
+            })
+*/          }
+        })        
+      }  
+    })
+    
+  }
 
 }

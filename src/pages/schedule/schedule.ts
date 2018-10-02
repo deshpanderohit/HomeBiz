@@ -46,6 +46,7 @@ export class SchedulePage {
     public toastCtrl: ToastController,
     public confData: ConferenceData,
     public user: UserData,
+    
   ) {}
 
   ionViewDidLoad() {
@@ -76,7 +77,7 @@ export class SchedulePage {
   }
 
   view(product: any) {
-    event.stopPropagation();
+    //event.stopPropagation();
     console.log("Product Clicked: "+JSON.stringify(product.prod_name));
     this.navCtrl.push(ProductPage,{product: product});
   }
