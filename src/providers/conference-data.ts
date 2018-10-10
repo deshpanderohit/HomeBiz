@@ -78,4 +78,14 @@ export class ConferenceData {
     let data = JSON.stringify({ cid: cid });
     return this.http.post('http://localhost/hb/cart/cartItems.php',data).map(result => result.json());
   }
+
+  deleteItem(cart_id: any, prod_id: any) {
+    let data = JSON.stringify({ cart_id: cart_id, prod_id: prod_id});
+    return this.http.post('http://localhost/hb/cart/deleteItem.php',data).map(result => result.json());
+  }
+
+  updateTime(cart_id: any,time: any,today: any) {
+    let data = JSON.stringify({ cart_id: cart_id, time: time, today: today });
+    return this.http.post('http://localhost/hb/cart/updateTime.php',data).map(result => result.json());
+  }
 }

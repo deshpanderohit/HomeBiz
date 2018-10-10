@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ConferenceData } from '../../providers/conference-data';
+import { MapPage } from '../map/map';
 
 /**
  * Generated class for the ProductPage page.
@@ -18,6 +19,7 @@ import { ConferenceData } from '../../providers/conference-data';
 })
 export class ProductPage {
 
+  toast: any;
   today = new Date();
   timeslots: any;
   time: any;
@@ -25,7 +27,7 @@ export class ProductPage {
   products: any = [];
   prodCart: Array<{ cid: string, prod_id: string, qty: string, req_dt: string, bs_id: string, ins_usr: string  }> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public confData: ConferenceData, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public confData: ConferenceData, public storage: Storage, public toastCtrl: ToastController) {
       this.data = this.navParams.get('product');
       this.confData.getProductDetails(this.data.prod_id).subscribe(data => {
         this.products = data;
@@ -84,6 +86,20 @@ export class ProductPage {
 
             this.confData.addToCart(cid,product.prod_id,product.quantity.toString(),today.toString(),time.bs_id,name).subscribe(data => {
               console.log("Data Received: "+data.message);
+              this.toast = this.toastCtrl.create({
+                message: 'Product added to cart',
+                showCloseButton: true,
+                closeButtonText: 'View'
+              });
+    
+              this.toast.onDidDismiss((data,role) => {
+                console.log("Success: "+data);
+                if (role == 'close') {
+                  this.navCtrl.push(MapPage);
+                }
+              });
+              this.toast.present();
+    
             })
 /*            this.prodCart.push({
               'cid': cid,

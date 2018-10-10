@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ConferenceData } from '../../providers/conference-data';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ProductDetailsPage page.
@@ -32,7 +34,7 @@ export class ProductDetailsPage {
     ];
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public confData: ConferenceData, public storage: Storage) {
     this.initialize();
     this.products = this.navParams.get("product");
     this.pname = this.navParams.get("pname");
@@ -67,7 +69,43 @@ export class ProductDetailsPage {
   addToCart(product: any, today: Date,time: any) {
     console.log("Product: "+JSON.stringify(product));
     console.log("Date: "+JSON.stringify(today));
-    console.log("Time: "+time);
+    console.log("Time: "+JSON.stringify(time));
+
+    this.storage.get('cid').then(result => {
+      //      console.log("Data: "+data);
+            if(result) {
+              this.storage.get('username').then( data => {
+                if(data) {
+                  let cid = result;
+                  let name = data;
+      
+                  this.confData.addToCart(cid,product.prod_id,product.quantity.toString(),today.toString(),time.bs_id,name).subscribe(data => {
+                    console.log("Data Received: "+data.message);
+                  })
+      /*            this.prodCart.push({
+                    'cid': cid,
+                    'prod_id': product.prod_id,
+                    'qty': product.quantity.toString(),
+                    'req_dt': today.toString(),
+                    'bs_id': time.bs_id,
+                    'ins_usr': name
+                  })
+                  //console.log("Prod Cart: "+JSON.stringify(this.prodCart));
+                  this.confData.addToCart(this.prodCart).subscribe(data => {
+        
+                    console.log("Data Received: "+data.message);
+                    if(data.message == "Added to Cart") {
+                      console.log("Product Added");
+                    }
+                    else
+                      console.log("Product Not Added");
+                      
+                  })
+      */          }
+              })        
+            }  
+          })
+      
   }
 
 }

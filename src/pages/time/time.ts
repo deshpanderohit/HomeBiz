@@ -43,4 +43,16 @@ export class TimePage {
     this.viewCtrl.dismiss();
   }
 
+  saveTime(today,time) {
+    let cart_id = this.cartItems.cart_id;
+    console.log("Prod Id: "+cart_id);
+    console.log("Date: "+JSON.stringify(today));
+    console.log("Time: "+JSON.stringify(time));
+
+    this.confData.updateTime(cart_id,today,time).subscribe(data => {
+      console.log("Data Received: "+data.message);
+    })
+
+  }
+
 }
